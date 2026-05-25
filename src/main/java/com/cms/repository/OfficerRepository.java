@@ -1,4 +1,7 @@
 package com.cms.repository;
 
-public interface OfficerRepository {
+import com.cms.model.Officer;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface OfficerRepository extends JpaRepository<Officer, Integer> {
 }

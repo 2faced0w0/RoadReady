@@ -5,6 +5,7 @@ import com.cms.dto.IncidentRespDto;
 import com.cms.exception.ResourceNotFoundException;
 import com.cms.mapper.IncidentMapper;
 import com.cms.model.Incident;
+import com.cms.model.Officer;
 import com.cms.repository.IncidentRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -25,6 +26,7 @@ public class IncidentService {
 
     private final IncidentRepository incidentRepository;
     private final IncidentMapper incidentMapper;
+    private final OfficerService officerService;
 
     public List<Incident> getAll() {
         return incidentRepository.findAll();
@@ -59,5 +61,13 @@ public class IncidentService {
         Pageable pageable =  PageRequest.of(page,size);
         Page<Incident> pages =  incidentRepository.findAll(pageable);
         return incidentMapper.mapEntityToDto(pages);
+    }
+
+    public void addIncidentWithOfficer(IncidentDto dto, int officerId){
+
+        Officer officer= officerService.getById(officerId);
+        Incident incident=incidentMapper.mapDtoToEntity(dto);
+        incident.setOfficer(officer);
+        incidentRepository.save(incident);
     }
 }
