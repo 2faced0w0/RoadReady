@@ -1,11 +1,16 @@
 package com.cms.service;
 
+import com.cms.dto.IncidentDto;
+import com.cms.dto.IncidentRespDto;
 import com.cms.exception.ResourceNotFoundException;
+import com.cms.mapper.IncidentMapper;
 import com.cms.model.Incident;
 import com.cms.repository.IncidentRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 /*
@@ -19,12 +24,15 @@ for all other classes including util use @Component
 public class IncidentService {
 
     private final IncidentRepository incidentRepository;
+    private final IncidentMapper incidentMapper;
 
     public List<Incident> getAll() {
         return incidentRepository.findAll();
     }
 
-    public void addIncident(Incident incident) {
+    public void addIncident(IncidentDto dto) {
+
+        Incident incident= incidentMapper.mapDtoToEntity(dto);
         incidentRepository.save(incident);
     }
 
@@ -44,5 +52,12 @@ public class IncidentService {
         existingIncident.setProgressDetails(updatedIncident.getProgressDetails());
 
         incidentRepository.save(existingIncident);
+    }
+
+    public IncidentRespDto getAllWithPagination(int page, int size) {
+        // prepare the Pageable object using PageRequest.
+        Pageable pageable =  PageRequest.of(page,size);
+        Page<Incident> pages =  incidentRepository.findAll(pageable);
+        return incidentMapper.mapEntityToDto(pages);
     }
 }
