@@ -1,4 +1,7 @@
 package com.roadready.model;
 
-public class Payments {
+public interface Payments {
+
+    String process();
+
 }
