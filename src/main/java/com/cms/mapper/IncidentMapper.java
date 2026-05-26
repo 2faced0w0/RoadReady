@@ -1,8 +1,10 @@
 package com.cms.mapper;
 
 import com.cms.dto.IncidentDto;
+import com.cms.dto.IncidentOfficerDto;
 import com.cms.dto.IncidentRespDto;
 import com.cms.model.Incident;
+import com.cms.model.Officer;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
@@ -27,5 +29,17 @@ public class IncidentMapper {
                 list
         );
         return dto;
+    }
+
+    public IncidentOfficerDto getDtoForEntity(Incident incident){
+        return new IncidentOfficerDto(
+                incident.getId(),
+                incident.getIncidentType(),
+                incident.getIncidentStatus(),
+                incident.getUpdatedAt(),
+                incident.getOfficer().getId(),
+                incident.getOfficer().getName(),
+                incident.getOfficer().getUser().getUsername()
+        );
     }
 }

@@ -7,17 +7,14 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Officer {
+public class Station {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
-    @Column(nullable = false)
-    private String name;
-
-    @OneToOne
-    private User user;
+    private int id; //findById
+    private String stationTitle;
+    private String address;
 
     @ManyToOne
-    private Station station;
+    private StationHead stationHead;
 }

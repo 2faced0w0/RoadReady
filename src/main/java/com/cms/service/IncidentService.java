@@ -1,6 +1,7 @@
 package com.cms.service;
 
 import com.cms.dto.IncidentDto;
+import com.cms.dto.IncidentOfficerDto;
 import com.cms.dto.IncidentRespDto;
 import com.cms.exception.ResourceNotFoundException;
 import com.cms.mapper.IncidentMapper;
@@ -69,5 +70,25 @@ public class IncidentService {
         Incident incident=incidentMapper.mapDtoToEntity(dto);
         incident.setOfficer(officer);
         incidentRepository.save(incident);
+    }
+
+    public List<IncidentOfficerDto> getIncidentByOfficerId(int officerId) {
+        Officer officer = officerService.getById(officerId);
+        List<Incident> list = incidentRepository.findByOfficerId(officerId);
+
+        return list
+                .stream()
+                .map(incidentMapper::getDtoForEntity)
+                .toList();
+    }
+
+    public List<IncidentOfficerDto> getIncidentByOfficerUsername(String officerUsername) {
+        Officer officer = officerService.getByUsername(officerUsername);
+        // List<Incident>  list = incidentRepository.findByOfficerUserUsername(officerUsername);
+        List<Incident>  list = incidentRepository.getByOfficerUserUsernameJpql(officerUsername);
+        return list.
+                stream()
+                .map(incidentMapper :: getDtoForEntity)
+                .toList(); //each incident will be converted into IncidentOfficerDto
     }
 }
