@@ -1,0 +1,13 @@
+package com.cms.dto;
+
+import com.cms.enums.IncidentStatus;
+import com.cms.enums.IncidentType;
+
+public record SuspectRespDto(
+        IncidentType incidentType,
+        IncidentStatus incidentStatus,
+                String details,
+                String name,
+                String contact,
+                int id
+) {}
