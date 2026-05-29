@@ -4,7 +4,6 @@ import com.cms.dto.IncidentDto;
 import com.cms.dto.IncidentOfficerDto;
 import com.cms.dto.IncidentRespDto;
 import com.cms.model.Incident;
-import com.cms.model.Officer;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
@@ -12,18 +11,20 @@ import java.util.List;
 
 @Component
 public class IncidentMapper {
-    public Incident mapDtoToEntity(IncidentDto incidentDto){
-        Incident incident=new Incident();
-        incident.setIncidentType(incidentDto.incidentType());
-        incident.setIncidentStatus(incidentDto.incidentStatus());
-        incident.setProgressDetails(incidentDto.progressDetails());
+
+    public Incident mapDtoToEntity(IncidentDto dto){
+        Incident incident = new Incident();
+        incident.setIncidentType(dto.incidentType());
+        incident.setIncidentStatus(dto.incidentStatus());
+        incident.setProgressDetails(dto.progressDetails());
         return incident;
     }
+
     public IncidentRespDto mapEntityToDto(Page<Incident> pages){
-        long totalElements=pages.getTotalElements();
-        int totalPages=pages.getTotalPages();
-        List<Incident> list=pages.getContent();
-        IncidentRespDto dto=new IncidentRespDto(
+        long totalElements =  pages.getTotalElements();
+        int totalPages = pages.getTotalPages();
+        List<Incident> list = pages.getContent();
+        IncidentRespDto dto = new IncidentRespDto(
                 totalElements,
                 totalPages,
                 list

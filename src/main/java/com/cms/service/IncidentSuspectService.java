@@ -60,6 +60,6 @@ public class IncidentSuspectService {
     }
 
     public List<SuspectDtoV2> getALLSuspectsByStation(int stationId) {
-        return incidentSuspectRepository.getALLSuspectsByStation(stationId);
+        return incidentSuspectRepository.getAllSuspectsByStation(stationId);
     }
 }

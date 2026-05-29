@@ -22,6 +22,7 @@ import java.util.List;
  * then use only @Controller
  * */
 @RestController
+@RequestMapping("/api/incident")
 @AllArgsConstructor
 public class IncidentController {
 
