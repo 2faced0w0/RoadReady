@@ -1,14 +1,14 @@
 package com.roadready.mapper;
 
-import com.roadready.dto.ReservationDto;
-import com.roadready.model.Reservations;
+import com.roadready.dto.ReservationRequestDto;
+import com.roadready.model.Reservation;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ReservationMapper {
 
-    public Reservations mapDtoToEntity(ReservationDto reservationDto) {
-    Reservations reservation = new Reservations();
-    reservation.set
+    public Reservation mapDtoToEntity(ReservationRequestDto reservationRequestDto) {
+    Reservation reservation = new Reservation();
+    reservation.setBookingStatus(reservationRequestDto.bookingStatus());
     }
 }
