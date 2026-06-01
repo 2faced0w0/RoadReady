@@ -42,4 +42,8 @@ public class Vehicle {
 
     @Column(nullable = false)
     private String location;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "agent_id", nullable = false)
+    private RentalAgent agent;
 }

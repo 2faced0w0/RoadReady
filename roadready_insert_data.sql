@@ -26,12 +26,12 @@ INSERT INTO Admins (name, email, password_hash, phone_number, role) VALUES
 -- ==========================================================
 -- 3. Insert Rental Agents
 -- ==========================================================
-INSERT INTO RentalAgents (name, email, password_hash, phone_number, role) VALUES
-('Tom Agent', 'tom@roadready.com', 'hashed_agent_1', '+1-555-1111', 'AGENT'),
-('Sarah Agent', 'sarah@roadready.com', 'hashed_agent_2', '+1-555-2222', 'AGENT'),
-('Mike Agent', 'mike@roadready.com', 'hashed_agent_3', '+1-555-3333', 'AGENT'),
-('Dave Agent', 'dave@roadready.com', 'hashed_agent_4', '+1-555-4444', 'AGENT'),
-('Lisa Agent', 'lisa@roadready.com', 'hashed_agent_5', '+1-555-5555', 'AGENT');
+INSERT INTO RentalAgents (name, email, password_hash, phone_number, role, admin_id) VALUES
+('Tom Agent', 'tom@roadready.com', 'hashed_agent_1', '+1-555-1111', 'AGENT', 1),
+('Sarah Agent', 'sarah@roadready.com', 'hashed_agent_2', '+1-555-2222', 'AGENT', 2),
+('Mike Agent', 'mike@roadready.com', 'hashed_agent_3', '+1-555-3333', 'AGENT', 3),
+('Dave Agent', 'dave@roadready.com', 'hashed_agent_4', '+1-555-4444', 'AGENT', 4),
+('Lisa Agent', 'lisa@roadready.com', 'hashed_agent_5', '+1-555-5555', 'AGENT', 5);
 
 -- ==========================================================
 -- 4. Insert Brands
@@ -46,12 +46,12 @@ INSERT INTO Brands (brand_name) VALUES
 -- ==========================================================
 -- 5. Insert Vehicles
 -- ==========================================================
-INSERT INTO Vehicles (brand_id, model, specifications, pricing_per_day, is_available, image_url, location) VALUES
-(1, 'Camry', 'Automatic, Petrol, 5 Seats', 55.00, TRUE, 'camry.jpg', 'Downtown Center, NY'),
-(2, 'CR-V', 'Automatic, Hybrid, 5 Seats', 70.00, TRUE, 'crv.jpg', 'Airport Terminal, NY'),
-(3, 'Mustang', 'Manual, Petrol, 4 Seats', 95.00, TRUE, 'mustang.jpg', 'Downtown Center, NY'),
-(4, '3 Series', 'Automatic, Petrol, 5 Seats', 110.00, TRUE, '3series.jpg', 'Uptown Branch, NY'),
-(5, 'Model 3', 'Automatic, Electric, 5 Seats', 85.00, FALSE, 'model3.jpg', 'Airport Terminal, NY');
+INSERT INTO Vehicles (brand_id, agent_id, model, specifications, pricing_per_day, is_available, image_url, location) VALUES
+(1, 1, 'Camry', 'Automatic, Petrol, 5 Seats', 55.00, TRUE, 'camry.jpg', 'Downtown Center, NY'),
+(2, 2, 'CR-V', 'Automatic, Hybrid, 5 Seats', 70.00, TRUE, 'crv.jpg', 'Airport Terminal, NY'),
+(3, 3, 'Mustang', 'Manual, Petrol, 4 Seats', 95.00, TRUE, 'mustang.jpg', 'Downtown Center, NY'),
+(4, 4, '3 Series', 'Automatic, Petrol, 5 Seats', 110.00, TRUE, '3series.jpg', 'Uptown Branch, NY'),
+(5, 5, 'Model 3', 'Automatic, Electric, 5 Seats', 85.00, FALSE, 'model3.jpg', 'Airport Terminal, NY');
 
 -- ==========================================================
 -- 6. Insert Reservations

@@ -24,7 +24,7 @@ public class Payment {
     @Column(name = "payment_id")
     private Integer paymentId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "reservation_id", nullable = false)
     private Reservation reservation;
 

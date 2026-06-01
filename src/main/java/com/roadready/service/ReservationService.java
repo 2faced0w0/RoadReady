@@ -1,10 +1,12 @@
 package com.roadready.service;
 
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
+import com.roadready.dto.ReservationRequestDto;
+import com.roadready.dto.ReservationResponseDto;
 
-@Service
-@AllArgsConstructor
-public class ReservationService {
+import java.util.List;
 
+public interface ReservationService {
+    ReservationResponseDto createReservation(ReservationRequestDto requestDTO);
+    ReservationResponseDto cancelReservation(Integer reservationId);
+    List<ReservationResponseDto> getPastReservations(Integer customerId);
 }

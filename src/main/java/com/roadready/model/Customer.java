@@ -1,5 +1,6 @@
 package com.roadready.model;
 
+import com.roadready.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -35,7 +36,7 @@ public class Customer {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private com.roadready.enums.Role role = com.roadready.enums.Role.CUSTOMER;
+    private Role role = Role.CUSTOMER;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)

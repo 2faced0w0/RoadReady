@@ -1,5 +1,6 @@
 package com.roadready.model;
 
+import com.roadready.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -35,7 +36,11 @@ public class RentalAgent {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private com.roadready.enums.Role role = com.roadready.enums.Role.AGENT;
+    private Role role = Role.AGENT;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "admin_id", nullable = false)
+    private Admin admin;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)

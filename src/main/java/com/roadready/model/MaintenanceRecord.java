@@ -18,7 +18,7 @@ public class MaintenanceRecord {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "vehicle_id", nullable = false)
     private Vehicle vehicle;
 
@@ -27,4 +27,8 @@ public class MaintenanceRecord {
 
     @Column(name = "days_since_last_service", nullable = false)
     private Integer daysSinceLastService;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "agent_id", nullable = false)
+    private RentalAgent updatedByAgent;
 }
