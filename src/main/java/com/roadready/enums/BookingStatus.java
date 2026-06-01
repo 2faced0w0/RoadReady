@@ -1,8 +1,9 @@
 package com.roadready.enums;
 
-public enum ReservationStatus {
+public enum BookingStatus {
     PENDING,
     CONFIRMED,
     CANCELLED,
-    COMPLETED
+    COMPLETED,
+    ACTIVE
 }

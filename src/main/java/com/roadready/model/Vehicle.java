@@ -1,0 +1,45 @@
+package com.roadready.model;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.math.BigDecimal;
+
+@Entity
+@Table(name = "Vehicles")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class Vehicle {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "vehicle_id")
+    private Integer vehicleId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "brand_id", nullable = false)
+    private Brand brand;
+
+    @Column(nullable = false, length = 100)
+    private String model;
+
+    @Column(columnDefinition = "TEXT")
+    private String specifications;
+
+    @Column(name = "pricing_per_day", nullable = false, precision = 10, scale = 2)
+    private BigDecimal pricingPerDay;
+
+    @Column(name = "is_available", nullable = false)
+    private Boolean isAvailable = true;
+
+    @Column(name = "image_url")
+    private String imageUrl;
+
+    @Column(nullable = false)
+    private String location;
+}

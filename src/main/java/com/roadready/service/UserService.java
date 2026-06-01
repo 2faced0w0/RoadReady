@@ -1,13 +1,10 @@
 package com.roadready.service;
 
-import com.roadready.dto.AuthResponse;
-import com.roadready.dto.LoginRequest;
-import com.roadready.exception.UserNotFoundException;
+import com.roadready.dto.AuthResponseDto;
+import com.roadready.dto.LoginResponseDto;
+import com.roadready.exception.CustomerNotFoundException;
 import com.roadready.model.User;
-import com.roadready.repository.UserRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,10 +18,10 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public AuthResponse authenticateUser(LoginRequest loginRequest){
+    public AuthResponseDto authenticateUser(LoginResponseDto loginResponseDto){
 
-        User user=userRepository.findByEmail(loginRequest.getEmail())
-                .orElseThrow(() -> new UserNotFoundException("Invalid credentials"));
+        User user=userRepository.findByEmail(loginResponseDto.getEmail())
+                .orElseThrow(() -> new CustomerNotFoundException("Invalid credentials"));
 
 //        if (!passwordEncoder.matches(loginRequest.getPassword(), user.getPasswordHash())) {
 //            throw new RuntimeException("Invalid email or password");
@@ -33,6 +30,6 @@ public class UserService {
         //JWT based auth artifact - holds JWT logic
         String JWT="dummytoken";
 
-        return new AuthResponse("Login Successful!", user.getId(), user.getRole().name());
+        return new AuthResponseDto("Login Successful!", user.getId(), user.getRole().name());
     }
 }
